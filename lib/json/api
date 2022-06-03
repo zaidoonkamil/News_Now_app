@@ -1,0 +1,12 @@
+
+ api key=  54d77d3fde5a48e9984f7c3222b606c6
+ GET https://newsapi.org/v2/top-headlines?country=us&apiKey=54d77d3fde5a48e9984f7c3222b606c6
+
+
+base url=  https://newsapi.org
+  method=  /v2/top-headlines
+   quere=  country=us&
+
+
+
+
