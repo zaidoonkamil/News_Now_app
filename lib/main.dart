@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:news_app/view/home_page.dart';
 
@@ -11,8 +12,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return const GetMaterialApp(
+    return  GetMaterialApp(
+      theme: ThemeData(
+          primaryColor: const Color.fromARGB(255, 38, 77, 172)
+      ),
     debugShowCheckedModeBanner: false,
       home: HomeView(),
     );
