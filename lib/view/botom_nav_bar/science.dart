@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -48,10 +49,13 @@ class Science extends StatelessWidget {
                             ),
                             SizedBox(
                               width: double.infinity,
-                              height: 150,
-                              child: Image.network(
-                                data.articles[index].urlToImage.toString(),
-                                fit: BoxFit.fill,
+                              height: 130,
+                              child: CachedNetworkImage(
+                                fit: BoxFit.fill ,
+                                imageUrl: data.articles[index].urlToImage.toString(),
+                                placeholder: (context, url) => CircularProgressIndicator(
+                                  color: const Color.fromARGB(255, 38, 77, 172),),
+                                errorWidget: (context, url, error) => Image.asset('assets/Untitled-13.png',fit: BoxFit.fill,),
                               ),
                             ),
                             Padding(

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -224,9 +225,12 @@ class _SportsState extends State<Sports> {
                               SizedBox(
                                 width: double.infinity,
                                 height: 130,
-                                child: Image.network(
-                                  data.articles[index].urlToImage.toString(),
-                                  fit: BoxFit.fill,
+                                child: CachedNetworkImage(
+                                  fit: BoxFit.fill ,
+                                  imageUrl: data.articles[index].urlToImage.toString(),
+                                  placeholder: (context, url) => CircularProgressIndicator(
+                                    color: const Color.fromARGB(255, 38, 77, 172),),
+                                  errorWidget: (context, url, error) => Image.asset('assets/Untitled-13.png',fit: BoxFit.fill,),
                                 ),
                               ),
                               Padding(
@@ -268,11 +272,14 @@ class _SportsState extends State<Sports> {
                               SizedBox(
                                 width: double.infinity,
                                 height: 130,
-                                child: Image.network(
-                                  data.articles[index].urlToImage.toString(),
-                                  fit: BoxFit.fill,
+                                child: CachedNetworkImage(
+                                  fit: BoxFit.fill ,
+                                  imageUrl: data.articles[index].urlToImage.toString(),
+                                  placeholder: (context, url) => CircularProgressIndicator(
+                                    color: const Color.fromARGB(255, 38, 77, 172),),
+                                  errorWidget: (context, url, error) => Image.asset('assets/Untitled-13.png',fit: BoxFit.fill,),
                                 ),
-                              ),
+                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 5,right: 5),
                                 child: Text(
