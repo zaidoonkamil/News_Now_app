@@ -3,7 +3,7 @@
    <application
         android:label="NEWS NOW"
         android:name="${applicationName}"
-        android:icon="@mipmap/launcher_icon">
+        android:icon="@mipmap/newsnow">
         <activity
             android:name=".MainActivity"
             android:exported="true"
