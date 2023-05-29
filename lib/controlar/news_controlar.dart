@@ -6,7 +6,7 @@ import '../model/news_model.dart';
 import '../view/botom_nav_bar/sports.dart';
 
 class NewsController {
-  getData([String cat])async{
+  getData([String? cat])async{
     String co=value;
     final url=Uri.parse(
         "https://newsapi.org/v2/top-headlines?country=$co&category"

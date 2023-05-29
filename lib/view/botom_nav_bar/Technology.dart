@@ -23,7 +23,7 @@ class technology extends StatelessWidget {
             future: controller.getData("technology"),
             builder: (context,AsyncSnapshot snapshot)
             {
-              Articles data=snapshot.data;
+              var data=snapshot.data;
               if(snapshot.hasData)
               {
                 return ListView.builder(
@@ -33,8 +33,8 @@ class technology extends StatelessWidget {
                       return Card(
                         color: Colors.grey[600],
                         elevation: 10,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
                         ),
                         child: Column(
                           children: [
@@ -45,6 +45,7 @@ class technology extends StatelessWidget {
                                 style: const TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                                 textDirection: TextDirection.rtl,
+                                textAlign: TextAlign.center,
                               ),
                             ),
                             SizedBox(
@@ -55,7 +56,7 @@ class technology extends StatelessWidget {
                                 imageUrl: data.articles[index].urlToImage.toString(),
                                 placeholder: (context, url) => CircularProgressIndicator(
                                   color: const Color.fromARGB(255, 38, 77, 172),),
-                                errorWidget: (context, url, error) => Image.asset('assets/Untitled-13.png',fit: BoxFit.fill,),
+                                errorWidget: (context, url, error) => Image.asset('assets/Untitled.png',fit: BoxFit.fill,),
                               ),
                             ),
                             Padding(
@@ -63,7 +64,7 @@ class technology extends StatelessWidget {
                               child: Text(
                                 data.articles[index].description.toString(),
                                 style: const TextStyle(
-                                    fontSize: 15,color: Colors.white60),
+                                    fontSize: 15, color: Colors.white60),
                                 textDirection: TextDirection.rtl,
                               ),
                             ),

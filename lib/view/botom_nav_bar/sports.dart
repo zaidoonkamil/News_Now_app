@@ -8,14 +8,14 @@ import '../../model/news_model.dart';
 
 // ignore: must_be_immutable
 class Sports extends StatefulWidget {
-     const Sports({Key key,}) : super(key: key);
+     const Sports({Key? key,}) : super(key: key);
 
   @override
   State<Sports> createState() => _SportsState();
 }
 
 class _SportsState extends State<Sports> {
-  String getdata;
+  String? getdata;
   @override
   void initState() {
     super.initState();
@@ -25,8 +25,8 @@ class _SportsState extends State<Sports> {
   getPref() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     setState(() {
-      if(pref.getString('country')!=null && pref.getString('country').isNotEmpty){
-        getdata=pref.getString('country');
+      if(pref.getString('country')!=null && pref.getString('country')!.isNotEmpty){
+        getdata=pref.getString('country')!;
         value=getdata;
       }
       else{
@@ -182,7 +182,7 @@ class _SportsState extends State<Sports> {
                     ),
                     value: 'se'),
               ],
-              onChanged: (String values) {
+              onChanged: (String? values) {
                 setState(() {
                   value = values;
                   savePref();
@@ -196,18 +196,15 @@ class _SportsState extends State<Sports> {
         padding: const EdgeInsets.all(3.0),
         child: FutureBuilder(
             future: controller.getData("sports"),
-            // ignore: missing_return
             builder: (context, AsyncSnapshot snapshot) {
-              Articles data = snapshot.data;
+              var data = snapshot.data;
               if (snapshot.hasData) {
-                if( (value=='eg') || (value=='ae') ){
                   return ListView.builder(
                       itemCount: data.articles.length,
                       itemBuilder: (context, int index) {
                         return Card(
                           color: Colors.grey[600],
                           elevation: 10,
-                          //  shadowColor: Colors.grey[500],
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
@@ -220,6 +217,7 @@ class _SportsState extends State<Sports> {
                                   style: const TextStyle(
                                       fontSize: 20, fontWeight: FontWeight.bold),
                                   textDirection: TextDirection.rtl,
+                                  textAlign: TextAlign.center,
                                 ),
                               ),
                               SizedBox(
@@ -230,7 +228,7 @@ class _SportsState extends State<Sports> {
                                   imageUrl: data.articles[index].urlToImage.toString(),
                                   placeholder: (context, url) => CircularProgressIndicator(
                                     color: const Color.fromARGB(255, 38, 77, 172),),
-                                  errorWidget: (context, url, error) => Image.asset('assets/Untitled-13.png',fit: BoxFit.fill,),
+                                  errorWidget: (context, url, error) => Image.asset('assets/Untitled.png',fit: BoxFit.fill,),
                                 ),
                               ),
                               Padding(
@@ -246,54 +244,6 @@ class _SportsState extends State<Sports> {
                           ),
                         );
                       });
-                }
-                else{
-                  return ListView.builder(
-                      itemCount: data.articles.length,
-                      itemBuilder: (context, int index) {
-                        return Card(
-                          color: Colors.grey[600],
-                          elevation: 10,
-                          //  shadowColor: Colors.grey[500],
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 5,right: 5),
-                                child: Text(
-                                  data.articles[index].title.toString(),
-                                  style: const TextStyle(
-                                      fontSize: 20, fontWeight: FontWeight.bold),
-                                  textDirection: TextDirection.ltr,
-                                ),
-                              ),
-                              SizedBox(
-                                width: double.infinity,
-                                height: 130,
-                                child: CachedNetworkImage(
-                                  fit: BoxFit.fill ,
-                                  imageUrl: data.articles[index].urlToImage.toString(),
-                                  placeholder: (context, url) => CircularProgressIndicator(
-                                    color: const Color.fromARGB(255, 38, 77, 172),),
-                                  errorWidget: (context, url, error) => Image.asset('assets/Untitled-13.png',fit: BoxFit.fill,),
-                                ),
-                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 5,right: 5),
-                                child: Text(
-                                  data.articles[index].description.toString(),
-                                  style: const TextStyle(
-                                      fontSize: 15, color: Colors.white60),
-                                  textDirection: TextDirection.ltr,
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      });
-              }
               } else {
                 return const Center(
                     child: CircularProgressIndicator(
