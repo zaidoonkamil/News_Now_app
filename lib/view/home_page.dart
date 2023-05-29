@@ -7,7 +7,7 @@ import 'botom_nav_bar/Technology.dart';
 import 'botom_nav_bar/science.dart';
 
 class HomeView extends StatefulWidget {
-  const HomeView({Key key}) : super(key: key);
+  const HomeView({Key? key}) : super(key: key);
 
   @override
   State<HomeView> createState() => _HomeViewState();
